@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Ajouter un Agent</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="date"],
+        .form-container input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="form-container">
+    <h2>Ajouter un Agent</h2>
+    <form action="/agents" method="post" enctype="multipart/form-data" >
+        <label for="nom">Nom de l'agent</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="matricule">Matricule</label>
+        <input type="text" id="matricule" name="matricule" required>
+
+        <label for="numeroToge">Numéro de toge</label>
+        <input type="text" id="numeroToge" name="numeroToge" required>
+
+        <label for="dateNaissance">Date de naissance</label>
+        <input type="date" id="dateNaissance" name="dateNaissance" required>
+
+        <label for="lieuNaissance">Lieu de naissance</label>
+        <input type="text" id="lieuNaissance" name="lieuNaissance" required>
+
+        <label for="numeroSerie">Numéro de série</label>
+        <input type="text" id="numeroSerie" name="numeroSerie" required>
+
+        <label for="image">Photo de l'agent</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <input type="submit" value="Ajouter l'agent">
+    </form>
+</div>
 </body>
 </html>

@@ -1,10 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Carte d'Agent</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .certificate {
+            width: 700px;
+            border: 5px solid #004085;
+            padding: 20px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .certificate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #004085;
+        }
+        .certificate-header img {
+            height: 60px;
+        }
+        .certificate-body {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .agent-photo {
+            width: 120px;
+            height: 150px;
+            border: 2px solid #ccc;
+        }
+        .agent-details {
+            flex: 1;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .agent-details p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .agent-details strong {
+            font-size: 18px;
+        }
+        .authenticity-seal {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-size: 16px;
+            color: green;
+            text-align: center;
+        }
+        .authenticity-seal img {
+            height: 50px;
+        }
+        .certificate-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            margin-right: 100px;
+            color: #6c757d;
+            text-align: center;
+        }
+        .number-seal {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="certificate">
+    <div class="certificate-header">
+        <img src="/static/Logo.jpg" alt="Logo Barreau">
+        <h2 style="color: #004085;">Certificat d'Aptitude à la Profession d'Avocat</h2>
+        <img src="/static/Banniere.jpg" alt="Emblème Avocat">
+    </div>
+
+    <div class="certificate-body">
+        <img th:src="@{${agent.imagePath}}" alt="Photo de l'agent" class="agent-photo">
+        <div class="agent-details">
+            <p><strong th:text="${agent.nom}">KOUAME DATTE VICTORIEN NARCISSE</strong></p>
+            <p th:text="'Né(e) le ' + ${agent.dateNaissance} + ' à ' + ${agent.lieuNaissance}">
+                Né(e) le 29 Octobre 1986 à Abidjan
+            </p>
+            <p><strong th:text="'Numéro de Toge : ' + ${agent.numeroToge}">
+                Numéro de Toge : 123456
+            </strong></p>
+            <p><strong th:text="'Matricule : ' + ${agent.matricule}">
+                Matricule : ABCD1234
+            </strong></p>
+        </div>
+    </div>
+
+    <div class="authenticity-seal">
+        <div th:if="${agent.statut == 'validé'}">
+            <img src="/static/success.png" alt="Avocat Validé">
+            <p>Statut : Validé</p>
+        </div>
+
+     <!--   <div th:if="${agent.statut == 'radié'}">
+            <img src="/static/delete.png" alt="Avocat Radié">
+            <p>Statut : Radié</p>
+        </div>-->
+        <p class="number-seal" th:text="'Numéro de Série : ' + ${agent.numeroSerie}">
+            Numéro de Série : 2918062305
+        </p>
+    </div>
+
+    <div class="certificate-footer">
+        <p>Certificat d'Aptitude à la Profession d'Avocat - SESSION 2023</p>
+    </div>
+</div>
 </body>
 </html>
